@@ -8,7 +8,7 @@ $products=DB::table('products')->select('id','cat_id','sub_cat_id','p_name','pri
 @endphp
 
 
-<div class="product_area deals_product_style3 view-btn">
+<div class="product_area deals_product_style3 view-btn" style="margin-top: 40px;">
 
     <div class="container">
         <div class="row">
@@ -35,9 +35,11 @@ $products=DB::table('products')->select('id','cat_id','sub_cat_id','p_name','pri
                             <article class="single_product">
                                 <figure>
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="/porduct_details/{{$item->id}}"><img
-                                                src="{{URL::to('/')}}/images/product/{{$v['0']}}" alt=""
-                                                style="height: 297px;" /></a>
+                                        <a class="primary_img" href="/porduct_details/{{$item->id}}">
+
+                                            <img data-src="{{URL::to('/')}}/images/product/{{$v['0']}}" alt=""
+                                                style="height: 297px;" class="lazy" />
+                                        </a>
 
                                         <div class="label_product"></div>
                                         <div class="action_links">

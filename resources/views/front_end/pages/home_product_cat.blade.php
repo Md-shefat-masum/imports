@@ -33,8 +33,8 @@
                             <div class="col-12">
                                 <div class="custom_paginate2">
                                     <pagination :show-disabled="true" :data="category.product" :limit="-1" @pagination-change-page="getResults2">
-                                        <span slot="prev-nav" @click.prevent="get_prev_cat(category, index)">&lt; Previous</span>
-                                        <span slot="next-nav" @click.prevent="get_next_cat(category, index)">Next &gt;</span>
+                                        <span slot="prev-nav" @click.prevent="get_prev_cat(category, index, $event)">&lt; Previous</span>
+                                        <span slot="next-nav" @click.prevent="get_next_cat(category, index, $event)">Next &gt;</span>
                                     </pagination>
                                 </div>
                             </div>
@@ -42,7 +42,8 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a class="primary_img" :href="'/porduct_details/'+product.id">
-                                            <img :src="'/images/product/'+product.related_image[0]" alt="">
+                                            <img :data-src="'/images/product/'+product.related_image[0]" v-if="!next_load"  alt="" class="lazy">
+                                            <img :src="'/images/product/'+product.related_image[0]" v-else  alt="" class="lazy">
                                         </a>
 
                                         <div class="label_product">

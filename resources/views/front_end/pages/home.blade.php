@@ -1,7 +1,5 @@
 @extends('front_end.layouts.master')
-@push('js')
-    <script src="/front_end/front_end_vue.js"></script>
-@endpush
+
 @section('content')
     @if(App\PopupBlogProduct::where('blog_position',1)->take(4)->get())
         <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -65,7 +63,9 @@
     @include('front_end.pages.home_product_news')
 </div>
 
-@endsection @section('scripts')
+@endsection
+
+@section('scripts')
 <script>
     $(document).ready(function () {
         $(window).on("load", function () {
@@ -105,8 +105,12 @@
         });
     });
 </script>
+
 @endsection
 @push('js')
+
+    <script src="/front_end/front_end_vue.js"></script>
+
     <script>
         $("#slideshow > div:gt(0)").hide();
 
@@ -161,4 +165,6 @@
             $("#slideshow_cat > div:first").fadeOut(1000).next().fadeIn(1000).end().appendTo("#slideshow_cat");
         }, 5000);
     </script>
+
+
 @endpush

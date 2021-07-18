@@ -62,8 +62,8 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a href="{!! url('blog-details/'.$b->id) !!}"><img
-                                            src="{{URL::to('/')}}/images/blog/{{$b->image}}" alt=""
+                                    <a href="{!! url('blog-details/'.$b->id) !!}">
+                                        <img data-src="{{URL::to('/')}}/images/blog/{{$b->image}}" class="lazy" alt=""
                                             style="height: 243px;"></a>
                                     <div class="label_product">
 

@@ -64,6 +64,7 @@
         <!-- End Facebook Pixel Code -->
         <link rel="stylesheet" href="{{asset('front_end/css/responsive.css')}}" />
         <link rel="stylesheet" href="/front_end/css/custom.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -104,6 +105,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
         --}} {{-- new --}}
         <script src="{{ asset('/js/app.js') }}"></script>
+        {{-- --}}
+
 
         <script src="{{asset('front_end/js/plugins.js')}}"></script>
         {{-- <script src="{{asset('front_end/js/datatables.min.js')}}"></script> --}}
@@ -626,6 +629,9 @@
               });
               @stack('mjs')
         </script>
+
+        <script src="/front_end/lazy.js"></script>
+
 
     </body>
 </html>
