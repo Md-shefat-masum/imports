@@ -8,7 +8,8 @@
 
                 @php
                 // $sp = DB::table('product_categories')->where('id', $cat['id'])->first();
-                    $itemroducts = DB::table('products')->select('id','cat_id','sub_cat_id','p_name','price','bundle_price','image','status')->where('cat_id', $is_home_categories->id)->get();
+                    $itemroducts = DB::table('products')->select('id','cat_id','sub_cat_id','p_name','price','bundle_price','image','status')
+                                    ->where('cat_id', $is_home_categories->id)->get();
                 @endphp
                 <div class="home_section_style4 menu-image">
                     <div class="container">

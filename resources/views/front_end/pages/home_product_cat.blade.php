@@ -1,10 +1,10 @@
 
 <div id="category_products_section">
-    <div class="home_section_style4 menu-image" v-for="category in categories">
+    <div class="home_section_style4 menu-image" v-for="(category, index) in categories" style="margin-top: 30px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>test</h1>
+
                 </div>
             </div>
             <div class="home_style4_inner">
@@ -13,7 +13,7 @@
                         <div class="category_menu" style="background-image: linear-gradient(rgba(11, 30, 57, 0.88), rgba(11, 30, 57, 0.88)),url({{asset('front_end/img/bg/banner112.jpg')}});background-position: center;background-size: 380px 497px;">
 
                             <div class="section_title s_title_style3">
-                                <h2>@{{category.cat_name}}</h2>
+                                <h2>@{{category.cat_info.cat_name}}</h2>
                             </div>
                             <div class="category_menu_content" v-if="category.subcategories.length > 0">
                                 <ul>
@@ -30,7 +30,15 @@
                     <div class="col-lg-9 col-md-12">
                         <!--product area start-->
                         <div class="product_area row no-gutters">
-                            <article class="single_product col-lg-2 col-md-4 col-sm-6" v-for="product in category.product.data">
+                            <div class="col-12">
+                                <div class="custom_paginate2">
+                                    <pagination :show-disabled="true" :data="category.product" :limit="-1" @pagination-change-page="getResults2">
+                                        <span slot="prev-nav" @click.prevent="get_prev_cat(category, index)">&lt; Previous</span>
+                                        <span slot="next-nav" @click.prevent="get_next_cat(category, index)">Next &gt;</span>
+                                    </pagination>
+                                </div>
+                            </div>
+                            <article class="single_product col-lg-2 col-xl-2 col-md-4 col-sm-3" v-for="product in category.product.data">
                                 <figure>
                                     <div class="product_thumb">
                                         <a class="primary_img" :href="'/porduct_details/'+product.id">
@@ -60,7 +68,7 @@
                                     <div class="product_content">
                                         <div class="product_content_inner">
                                             <h4 class="product_name">
-                                                <a href="'/porduct_details/'+product.id">@{{product.name}}}</a>
+                                                <a href="'/porduct_details/'+product.id">@{{product.p_name}}</a>
                                             </h4>
 
                                             <div class="price_box home-cat">
@@ -108,3 +116,5 @@
         </div>
     </div>
 </div>
+
+

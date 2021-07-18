@@ -1421,33 +1421,29 @@ class FrontendController extends Controller
 
     private function getCategoriesWithSubCategoriesForJson($paginate_number)
     {
-        $categories = ProductCategory::select(['id', 'cat_name','status'])
-            ->where('status', 1)
-            ->orderBy('cat_name', 'ASC')
-            // ->with('products')
-            // ->check_products(10)
-            ->get();
 
+        $categories = HomeProductCategory::select(['id', 'cat_id'])
+            ->where('cat_status', 1)
+            ->orderBy('created_at', 'DESC')
+            ->get();
         foreach ($categories as $key => $category) {
-            // dd();
             $category->product = $category->products()->paginate($paginate_number);
             $subcategories = Product::select(['id', 'sub_cat_id'])
-                ->where('cat_id', $category->id)
+                ->where('cat_id', $category->cat_id)
                 ->where('status', 1)
                 ->get()
                 ->toArray();
             $subcategories_id = array_unique(Arr::pluck($subcategories, 'sub_cat_id'));
-
-            $a = DB::table('subcategories')
+            $a = FacadesDB::table('subcategories')
                 ->select(['id', 'name'])
                 ->whereIn('id', $subcategories_id)
                 ->orderBy('name', 'ASC')
                 ->get()
                 ->toArray();
-
             $categories[$key]['subcategories'] = count($a) ? json_decode(json_encode($a), true) : [];
         }
 
+        // dd($categories);
         return $categories;
     }
 
