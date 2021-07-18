@@ -1,0 +1,30 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ public/$1 [L]
+  
+</IfModule>
+
+<Files .env>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files composer.json>
+  Order allow,deny
+  Deny from all
+</Files>
+
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "*"
+        Header set Contetnt-Type "application/json"
+        Header set Access-Control-Allow-Headers "Origin, X-Requested-With,Authorization, Content-Type, Accept"
+  </FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php72” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
